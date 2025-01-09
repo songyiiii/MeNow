@@ -1,0 +1,16 @@
+.portfolio_wrap {
+  width: 300px;
+  height: 300px;
+  position: relative;
+  overflow: hidden;
+}
+.portfolio_wrap img {
+  width: 100%;
+  height: auto;
+}
+.portfolio_wrap .portfolio_title {
+  position: absolute;
+  bottom: 5%;
+  left: 5%;
+  color: white;
+}

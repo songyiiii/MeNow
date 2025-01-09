@@ -1,0 +1,78 @@
+@font-face {
+  font-family: 'Paperlogy-8ExtraBold';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-8ExtraBold.woff2')
+    format('woff2');
+  font-weight: 800;
+  font-style: normal;
+}
+.header {
+  height: 170px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 1280px;
+  width: 100%;
+  transition: 0.5s;
+  background-color: white;
+  font-weight: bold;
+  z-index: 10;
+}
+.header .header_top {
+  text-align: center;
+}
+.header .logo {
+  padding: 10px 0;
+  font-size: 70px;
+  transition: 0.5s;
+  font-family: 'Paperlogy-8ExtraBold';
+}
+.header .header_top .mobile_icon {
+  display: none;
+}
+.header .header_middle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 20px;
+}
+.header .header_middle .header_middle_right {
+  font-size: 14px;
+}
+.header .header_middle a {
+  padding: 0px 15px;
+}
+.header .header_bottom {
+  display: flex;
+  font-size: 15px;
+}
+.header .header_bottom li {
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+}
+.scrolled {
+  height: 130px;
+  transition: 0.5s;
+}
+.scrolled .logo {
+  font-size: 30px;
+}
+
+@media screen and (max-width: 800px) {
+  .header .header_top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .header .header_top .mobile_icon {
+    display: block;
+  }
+  .header .header_middle,
+  .header .header_bottom {
+    display: none;
+  }
+}
