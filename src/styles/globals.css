@@ -9,3 +9,10 @@ a {
   color: inherit;
   cursor: pointer;
 }
+button {
+  cursor: pointer;
+}
+.error {
+  color: red;
+  font-size: 11px;
+}

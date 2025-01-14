@@ -16,6 +16,9 @@
   padding-top: 190px;
   height: 800px;
 }
+.hidden_header {
+  padding-top: 0;
+}
 .footer {
   padding: 100px 0px;
 }

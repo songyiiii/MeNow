@@ -1,0 +1,9 @@
+.editor_wrap {
+  position: relative;
+}
+.editor_wrap img {
+  width: 200px;
+  position: absolute;
+  top: 30%;
+  left: 5%;
+}

@@ -2,9 +2,11 @@ import Link from 'next/link';
 import style from './Header.module.css';
 import { useEffect, useState } from 'react';
 import { FaBars } from 'react-icons/fa';
+import SearchLayout from '../SearchLayout';
 
 const Header = () => {
   const [isScroll, setIsScroll] = useState(false);
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 5) {
@@ -30,25 +32,19 @@ const Header = () => {
           <FaBars />
         </div>
       </div>
-      <div className={style.header_middle}>
+      <div className={style.header_bottom}>
         <div>
-          <Link href={'/'}>포트폴리오</Link>
           <Link href={'/'}>등록하기</Link>
           <Link href={'/'}>협업요청</Link>
+          <Link href={'/'}>카테고리</Link>
         </div>
-        <div className={style.header_middle_right}>
-          <Link href={'/'}>로그인</Link>
+        <div className={style.header_bottom_right}>
+          <Link href={'/login'}>로그인</Link>
         </div>
       </div>
-      <ul className={style.header_bottom}>
-        <li>예술･창작</li>
-        <li>기술･개발</li>
-        <li>비즈니스･관리</li>
-        <li>엔턴테인먼트･미디어</li>
-        <li>교육･연구</li>
-        <li>건강･웰니스</li>
-        <li>기타</li>
-      </ul>
+      <div className={style.header_search}>
+        <SearchLayout />
+      </div>
     </header>
   );
 };

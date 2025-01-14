@@ -1,10 +1,8 @@
-import { ReactNode } from 'react';
-
-const SearchLayout = ({ children }: { children: ReactNode }) => {
+import style from './SearchLayout.module.css';
+const SearchLayout = () => {
   return (
-    <div>
-      <div>임시 서치바</div>
-      {children}
+    <div className={style.search_bar}>
+      <input></input>
     </div>
   );
 };
