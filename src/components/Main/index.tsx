@@ -3,7 +3,6 @@ import items from '../../mock/portfolio.json';
 import style from './Main.module.css';
 
 const Main = () => {
-  console.log(items);
   return (
     <div className={style.main_wrap}>
       {items.map((item) => (

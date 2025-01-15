@@ -1,3 +1,5 @@
+import { AxiosError } from 'axios';
+
 export interface PortfolioData {
   id: number;
   title: string;
@@ -12,4 +14,9 @@ export interface UserData {
   role: string;
   gender: string;
   confirm: string;
+  phone: string;
 }
+
+export type LoginData = Pick<UserData, 'email' | 'password'>;
+
+export type ServerError = AxiosError<{ message: string }>;
