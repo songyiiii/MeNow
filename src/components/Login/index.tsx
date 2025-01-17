@@ -20,10 +20,8 @@ const Login = () => {
   const handleLogin = async (data: LoginData) => {
     try {
       const response = await loginUser(data);
-      console.log(response, 'response');
       dispatch(setUserInfo(response.userInfo));
       router.push('/');
-      return response; // 반환 데이터 확인
     } catch (err) {
       const error = err as ServerError;
       switch (error.response?.status) {

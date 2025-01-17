@@ -13,7 +13,7 @@
 }
 
 .main {
-  padding-top: 190px;
+  padding-top: 140px;
   height: 800px;
 }
 .hidden_header {
@@ -21,9 +21,6 @@
 }
 .footer {
   padding: 100px 0px;
-}
-.scrolled {
-  padding-top: 150px;
 }
 @media screen and (max-width: 1279px) {
   .container {

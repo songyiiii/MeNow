@@ -3,13 +3,14 @@ import { FaUserEdit } from 'react-icons/fa';
 import style from './Signup.module.css';
 import { useForm } from 'react-hook-form';
 import { registerUser } from '@/pages/api/userApi';
-import { UserData } from '@/types';
+import { ServerError, UserData } from '@/types';
 import { sendSms } from '@/pages/api/smsApi';
 const Register = () => {
   const {
     register,
     handleSubmit,
     watch,
+    setError,
     formState: { errors },
   } = useForm<UserData>();
 
@@ -23,8 +24,25 @@ const Register = () => {
       const userData = { ...data, role: 'user' };
       const response = await registerUser(userData);
       console.log(response);
-    } catch (error) {
-      console.error('회원가입 실패', error);
+    } catch (err) {
+      const error = err as ServerError;
+      switch (error.response?.status) {
+        case 400:
+          setError('email', {
+            type: 'manual',
+            message: error.response.data.message || '이미 존재하는 회원입니다',
+          });
+          break;
+        case 401:
+          setError('nickname', {
+            type: 'manual',
+            message: error.response.data.message || '중복된 닉네임입니다',
+          });
+          break;
+        default:
+          console.error('회원가입 실패', errors);
+          break;
+      }
     }
   };
 
@@ -49,27 +67,27 @@ const Register = () => {
       <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
         <input
           placeholder="이메일"
-          {...register('email', { required: true, pattern: emailRegex })}
+          {...register('email', {
+            required: true,
+            pattern: {
+              value: emailRegex,
+              message: '이메일 형식에 맞게 입력해주세요',
+            },
+          })}
         />
-        {errors?.email?.type === 'required' && (
-          <p className="error">이메일을 입력해주세요</p>
-        )}
-        {errors?.email?.type === 'pattern' && (
-          <p className="error">이메일 양식에 맞게 입력해주세요</p>
-        )}
+        {errors?.email && <p className="error">{errors.email.message}</p>}
         <input
           placeholder="소문자, 숫자, 특수문자 포함 8자리 이상"
           type="password"
-          {...register('password', { required: true, pattern: passwordRegex })}
+          {...register('password', {
+            required: true,
+            pattern: {
+              value: passwordRegex,
+              message: '소문자, 숫자, 특수문자 포함 8자리 이상이여야 합니다',
+            },
+          })}
         />
-        {errors.password?.type === 'required' && (
-          <p className="error">비밀번호를 입력해주세요</p>
-        )}
-        {errors.password?.type === 'pattern' && (
-          <p className="error">
-            소문자, 숫자, 특수문자 포함 8자리 이상이여야 합니다
-          </p>
-        )}
+        {errors.password && <p className="error">{errors.password.message}</p>}
         <input
           placeholder="비밀번호 확인"
           type="password"
@@ -86,8 +104,16 @@ const Register = () => {
             placeholder="전화번호 입력"
             {...register('phone', { required: true })}
           />
-          <button type='button' onClick={handleSendSms}>인증하기</button>
+          <button type="button" onClick={handleSendSms}>
+            인증하기
+          </button>
         </div>
+        <input
+          placeholder="닉네임 입력"
+          {...register('nickname', { required: true })}
+        />
+        {errors.nickname && <p className="error">{errors.nickname.message}</p>}
+
         <div className={style.gender}>
           남
           <input
@@ -102,7 +128,6 @@ const Register = () => {
             {...register('gender', { required: true })}
           />
         </div>
-
         <button type="submit">가입하기</button>
       </form>
     </div>

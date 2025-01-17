@@ -2,7 +2,6 @@ import Link from 'next/link';
 import style from './Header.module.css';
 import { useEffect, useState } from 'react';
 import { FaBars } from 'react-icons/fa';
-import SearchLayout from '../SearchLayout';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
 
@@ -48,9 +47,6 @@ const Header = () => {
             <Link href={'/login'}>로그인</Link>
           )}
         </div>
-      </div>
-      <div className={style.header_search}>
-        <SearchLayout />
       </div>
     </header>
   );

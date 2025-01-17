@@ -15,6 +15,7 @@ export interface UserData {
   gender: string;
   confirm: string;
   phone: string;
+  nickname: string;
 }
 
 export type LoginData = Pick<UserData, 'email' | 'password'>;
